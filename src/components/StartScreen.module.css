@@ -127,19 +127,7 @@
   border: 0;
 }
 
-.countField {
-  min-width: 0;
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
 .difficultyField legend {
-  width: 100%;
-  padding: 0;
-}
-
-.countField legend {
   width: 100%;
   padding: 0;
 }
@@ -149,15 +137,13 @@
   gap: 8px;
 }
 
-.difficultyOption,
-.countOption {
+.difficultyOption {
   position: relative;
   display: block;
   cursor: pointer;
 }
 
-.difficultyOption input,
-.countOption input {
+.difficultyOption input {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -206,41 +192,9 @@
   border: 5px solid var(--coral);
 }
 
-.difficultyOption input:focus-visible + .radioCard,
-.countOption input:focus-visible + span {
+.difficultyOption input:focus-visible + .radioCard {
   outline: 3px solid #8e7ae6;
   outline-offset: 2px;
-}
-
-.countOptions {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  margin-bottom: 24px;
-}
-
-.countOption span {
-  display: block;
-  padding: 12px 5px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  text-align: center;
-  font-size: 1rem;
-  font-weight: 700;
-}
-
-.countOption small {
-  display: block;
-  margin-top: 2px;
-  color: var(--muted);
-  font-size: 0.65rem;
-  font-weight: 500;
-}
-
-.countOption input:checked + span {
-  border-color: #efb4a5;
-  color: var(--coral-dark);
-  background: #fff7f4;
 }
 
 .startButton {

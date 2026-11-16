@@ -3,9 +3,18 @@ import styles from './StartScreen.module.css';
 export default function StartScreen({
   categories,
   difficulties,
-  questionCounts,
+  lastSettings,
   onStart,
 }) {
+  const defaultCategoryId = categories.find(
+    (category) => String(category.id) === String(lastSettings.categoryId),
+  )?.id
+    ?? categories.find((category) => category.name === 'Science: Nature')?.id
+    ?? categories[0]?.id;
+  const defaultDifficulty = difficulties.find(
+    (difficulty) => difficulty.value === lastSettings.difficulty,
+  )?.value ?? difficulties[0]?.value;
+
   return (
     <section className={styles.card} aria-labelledby="start-title">
       <div className={styles.intro}>
@@ -21,7 +30,11 @@ export default function StartScreen({
 
       <form className={styles.form} onSubmit={(event) => {
         event.preventDefault();
-        onStart();
+        const formData = new FormData(event.currentTarget);
+        onStart({
+          categoryId: formData.get('category'),
+          difficulty: formData.get('difficulty'),
+        });
       }}>
         <label className={styles.fieldLabel} htmlFor="category">01 <span>Choose your topic</span></label>
         <div className={styles.selectWrap}>
@@ -29,11 +42,12 @@ export default function StartScreen({
           <select
             id="category"
             name="category"
-            defaultValue={categories.find((category) => category.value === 'science')?.value ?? categories[0].value}
+            defaultValue={defaultCategoryId}
+            required
           >
             {categories.map((category) => (
-              <option key={category.value} value={category.value}>
-                {category.emoji} {category.label}
+              <option key={category.id} value={category.id}>
+                {category.name}
               </option>
             ))}
           </select>
@@ -43,13 +57,14 @@ export default function StartScreen({
         <fieldset className={styles.difficultyField}>
           <legend className={styles.fieldLabel}>02 <span>Set the difficulty</span></legend>
           <div className={styles.difficultyOptions}>
-            {difficulties.map((difficulty, index) => (
+            {difficulties.map((difficulty) => (
               <label className={styles.difficultyOption} key={difficulty.value}>
                 <input
                   type="radio"
                   name="difficulty"
                   value={difficulty.value}
-                  defaultChecked={index === 0}
+                  defaultChecked={difficulty.value === defaultDifficulty}
+                  required
                 />
                 <span className={styles.radioCard}>
                   <span className={styles.radioDot} />
@@ -63,27 +78,10 @@ export default function StartScreen({
           </div>
         </fieldset>
 
-        <fieldset className={styles.countField}>
-          <legend className={styles.fieldLabel}>03 <span>How long have you got?</span></legend>
-          <div className={styles.countOptions}>
-            {questionCounts.map((count, index) => (
-              <label className={styles.countOption} key={count}>
-                <input
-                  type="radio"
-                  name="question-count"
-                  value={count}
-                  defaultChecked={index === 0}
-                />
-                <span>{count}<small> questions</small></span>
-              </label>
-            ))}
-          </div>
-        </fieldset>
-
         <button className={styles.startButton} type="submit">
           Let&apos;s play <span aria-hidden="true">↗</span>
         </button>
-        <p className={styles.note}><span aria-hidden="true">⏱</span> Preview setup — every round uses five sample questions.</p>
+        <p className={styles.note}><span aria-hidden="true">⏱</span> 10 questions, 15 seconds each. You&apos;ve got this!</p>
       </form>
     </section>
   );

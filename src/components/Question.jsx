@@ -55,6 +55,13 @@ export default function Question({
             );
           })}
         </div>
+        <p className={styles.answerAnnouncement} role="status" aria-live="polite" aria-atomic="true">
+          {answer === null
+            ? ''
+            : answer === question.correctAnswerIndex
+              ? 'Correct!'
+              : `Incorrect. The correct answer is ${question.answers[question.correctAnswerIndex]}.`}
+        </p>
         {answer !== null && (
           <button className={styles.nextButton} type="button" onClick={onNext}>
             {isLastQuestion ? 'See results' : 'Next question'} <span aria-hidden="true">↗</span>
@@ -64,7 +71,7 @@ export default function Question({
 
       <footer className={styles.footer}>
         <span><span aria-hidden="true">✦</span> Trust your first thought!</span>
-        <span>Sample round</span>
+        <span>1–4 to answer · Enter to continue</span>
       </footer>
     </section>
   );

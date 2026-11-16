@@ -98,9 +98,76 @@ select:focus-visible {
   color: var(--coral);
 }
 
+.storage-warning {
+  max-width: 700px;
+  margin: 12px auto 0;
+  color: #a65c4b;
+  font-size: 0.82rem;
+  text-align: center;
+}
+
+.status-card {
+  display: flex;
+  width: min(100%, 510px);
+  min-height: 180px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 54px auto 30px;
+  padding: 32px;
+  border: 1px solid rgb(233 229 220 / 70%);
+  border-radius: 24px;
+  background: var(--paper);
+  box-shadow: 0 24px 70px rgb(68 48 32 / 9%);
+  color: var(--muted);
+  text-align: center;
+}
+
+.status-card p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.status-spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid #f0ede7;
+  border-top-color: var(--coral);
+  border-radius: 50%;
+  animation: status-spin 800ms linear infinite;
+}
+
+.status-retry {
+  display: flex;
+  width: min(100%, 220px);
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 17px;
+  border: 0;
+  border-radius: 12px;
+  color: white;
+  background: var(--coral);
+  font-weight: 700;
+}
+
+.status-retry:hover {
+  background: var(--coral-dark);
+}
+
+@keyframes status-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @media (max-width: 600px) {
   .app-shell {
     width: min(100% - 28px, 1120px);
     padding-top: 16px;
+  }
+
+  .status-card {
+    margin: 25px auto;
   }
 }
