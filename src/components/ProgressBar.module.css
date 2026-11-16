@@ -1,0 +1,33 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.track {
+  height: 8px;
+  flex: 1;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #f0ede7;
+}
+
+.fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--coral);
+  transition: width 240ms ease;
+}
+
+.label {
+  min-width: 39px;
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.label span {
+  color: #a9a39c;
+  font-weight: 500;
+}

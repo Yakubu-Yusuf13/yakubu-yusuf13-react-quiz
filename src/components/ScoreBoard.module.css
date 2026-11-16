@@ -1,0 +1,44 @@
+.scoreBoard {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  padding: 18px 21px;
+  border: 1px solid #e4ecd9;
+  border-radius: 16px;
+  background: #f5faef;
+}
+
+.score {
+  color: #54845c;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.08em;
+  line-height: 1;
+}
+
+.score span {
+  color: #a0b69d;
+  font-size: 1.1rem;
+  letter-spacing: -0.04em;
+}
+
+.copy {
+  display: grid;
+  gap: 4px;
+}
+
+.copy strong {
+  font-size: 0.84rem;
+}
+
+.copy span {
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.stars {
+  margin-left: auto;
+  color: #e8ba56;
+  font-size: 1.65rem;
+}
